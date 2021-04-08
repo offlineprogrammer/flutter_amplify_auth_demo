@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_amplify_auth_demo/services/auth.dart';
-
-import 'package:flutter_amplify_auth_demo/widgets/show_alart_dialog.dart';
 
 class HomePage extends StatelessWidget {
   Future<void> _signOut(BuildContext context) async {
     try {
-      final auth = Provider.of<AuthBase>(context, listen: false);
-      await auth.signOut();
+//      final auth = Provider.of<AuthBase>(context, listen: false);
+//      await auth.signOut();
     } catch (e) {
       print(e.toString());
     }
@@ -16,15 +13,15 @@ class HomePage extends StatelessWidget {
 
   Future<void> _confirmSignOut(BuildContext context) async {
     try {
-      final didRequestSignOut = await showAlertDialog(context,
-          title: 'Logout',
-          content: 'Are you sure you want to logout',
-          defaultActionText: 'Logout',
-          cancelActionText: 'Cancel');
+      // final didRequestSignOut = await showAlertDialog(context,
+      //     title: 'Logout',
+      //     content: 'Are you sure you want to logout',
+      //     defaultActionText: 'Logout',
+      //     cancelActionText: 'Cancel');
 
-      if (didRequestSignOut == true) {
-        _signOut(context);
-      }
+      // if (didRequestSignOut == true) {
+      //   _signOut(context);
+      // }
     } catch (e) {
       print(e.toString());
     }
