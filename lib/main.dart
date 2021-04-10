@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Timer Tracker',
+        title: 'Amplify Auth Demo',
         theme: ThemeData(
           primarySwatch: Colors.indigo,
         ),
