@@ -1,47 +1,11 @@
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_amplify_auth_demo/models/app_user.dart';
 import 'package:flutter_signin_button/button_builder.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:provider/provider.dart';
 
 class SignInPage extends StatelessWidget {
-  // final SignInManager manager;
-  // final bool isLoading;
-
-  // const SignInPage({Key? key, required this.manager, required this.isLoading})
-  //     : super(key: key);
-
-  // static Widget create(BuildContext context) {
-  //   final auth = Provider.of<AuthBase>(context, listen: false);
-  //   return ChangeNotifierProvider<ValueNotifier<bool>>(
-  //     create: (_) => ValueNotifier<bool>(false),
-  //     child: Consumer<ValueNotifier<bool>>(
-  //       builder: (_, isLoading, __) => Provider<SignInManager>(
-  //         create: (_) => SignInManager(auth: auth, isLoading: isLoading),
-  //         child: Consumer<SignInManager>(
-  //           builder: (_, manager, __) => SignInPage(
-  //             manager: manager,
-  //             isLoading: isLoading.value,
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
-
-  // void _showSignInError(BuildContext context, Exception exception) {
-  //   showExceptionAlertDialog(context,
-  //       title: 'Sign in failed', exception: exception);
-  // }
-
-  // Future<void> _signInAnonymously(BuildContext context) async {
-  //   try {
-  //     final user = await manager.signInAnonymously();
-  //   } on Exception catch (e) {
-  //     _showSignInError(context, e);
-  //     print(e.toString());
-  //   } finally {}
-  // }
-
   // Future<void> _signInWithGoogle(BuildContext context) async {
   //   try {
   //     final user = await manager.signInWithGoogle();
@@ -49,22 +13,6 @@ class SignInPage extends StatelessWidget {
   //     _showSignInError(context, e);
   //     print(e.toString());
   //   } finally {}
-  // }
-
-  // Future<void> _signInWithFacebook(BuildContext context) async {
-  //   try {
-  //     final user = await manager.signInWithFacebook();
-  //   } on Exception catch (e) {
-  //     _showSignInError(context, e);
-  //     print(e.toString());
-  //   } finally {}
-  // }
-
-  // void _signInWithEmail(BuildContext context) {
-  //   Navigator.of(context).push(
-  //     MaterialPageRoute(
-  //         builder: (context) => EmailSignInPage(), fullscreenDialog: true),
-  //   );
   // }
 
   @override
@@ -98,7 +46,7 @@ class SignInPage extends StatelessWidget {
             icon: Icons.email,
             height: 60,
             onPressed: () {
-              // _showButtonPressDialog(context, 'Email');
+              context.read<AppUser>().signIn(AuthProvider.amazon);
             },
             backgroundColor: Colors.blueGrey[700],
             width: 220.0,
@@ -110,7 +58,7 @@ class SignInPage extends StatelessWidget {
             Buttons.Google,
             padding: const EdgeInsets.symmetric(vertical: 8),
             onPressed: () {
-              //_showButtonPressDialog(context, 'Google');
+              context.read<AppUser>().signIn(AuthProvider.google);
             },
           ),
           SizedBox(
@@ -120,7 +68,7 @@ class SignInPage extends StatelessWidget {
             Buttons.FacebookNew,
             padding: const EdgeInsets.symmetric(vertical: 15),
             onPressed: () {
-              //_showButtonPressDialog(context, 'Google');
+              context.read<AppUser>().signIn(AuthProvider.facebook);
             },
           ),
           SizedBox(
