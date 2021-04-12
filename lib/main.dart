@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_amplify_auth_demo/pages/home_page.dart';
+import 'package:flutter_amplify_auth_demo/pages/landing_page.dart';
 import 'package:provider/provider.dart';
 
 import 'models/app_user.dart';
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.indigo,
         ),
-        home: HomePage(),
+        home: LandingPage(),
       ),
     );
   }

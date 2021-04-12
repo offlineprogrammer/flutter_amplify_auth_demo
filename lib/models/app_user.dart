@@ -4,24 +4,40 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import '../amplifyconfiguration.dart';
 
 class AppUser extends ChangeNotifier {
-  AmplifyClass amplifyInstance;
   bool isSignUpComplete;
   bool isSignedIn = false;
   String username;
 
   AppUser() {
-    this.amplifyInstance = AmplifyClass();
-    _configureAmplify();
+    print('Amplify ' + Amplify.isConfigured.toString());
+    if (!Amplify.isConfigured) configureAmplify();
+    // _fetchSession();
   }
 
-  void _configureAmplify() async {
+  void configureAmplify() async {
     AmplifyAuthCognito authPlugin = AmplifyAuthCognito();
     Amplify.addPlugins([authPlugin]);
 
     try {
+      print('Amplify configureAmplify ' + Amplify.isConfigured.toString());
       await Amplify.configure(amplifyconfig);
+      print('Amplify configureAmplify ' + Amplify.isConfigured.toString());
     } catch (e) {
-      print(e);
+      print('Erroorrr ' + e.toString());
+    } finally {
+      // _fetchSession();
+    }
+  }
+
+  void _fetchSession() async {
+    try {
+      signOut();
+      var res = await Amplify.Auth.getCurrentUser();
+      print(res.username);
+      isSignedIn = true;
+      notifyListeners();
+    } catch (e) {
+      //  print(e.message);
     }
   }
 
@@ -31,6 +47,17 @@ class AppUser extends ChangeNotifier {
       isSignedIn = true;
       notifyListeners();
     } on AmplifyException catch (e) {
+      print(e.message);
+    }
+  }
+
+  void signOut() async {
+    try {
+      await Amplify.Auth.signOut();
+      print('signed out');
+      isSignedIn = false;
+      notifyListeners();
+    } on AuthException catch (e) {
       print(e.message);
     }
   }
