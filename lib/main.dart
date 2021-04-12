@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Amplify Auth Demo',
         theme: ThemeData(
-          primarySwatch: Colors.indigo,
+          primarySwatch: Colors.deepPurple,
         ),
         home: LandingPage(),
       ),

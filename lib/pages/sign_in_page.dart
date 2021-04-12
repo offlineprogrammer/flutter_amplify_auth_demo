@@ -72,6 +72,27 @@ class SignInPage extends StatelessWidget {
             text: 'Sign in with Apple',
             textColor: Colors.white,
           ),
+          SizedBox(
+            height: 8.0,
+          ),
+          Text(
+            'Or',
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.black87,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(
+            height: 8.0,
+          ),
+          SocialSignInButton(
+            button: Buttons.Email,
+            onPressed: () => context.read<AppUser>().signIn(AuthProvider.apple),
+            color: Colors.deepOrange,
+            text: 'Sign in with email',
+            textColor: Colors.white,
+          ),
         ],
       ),
     );
