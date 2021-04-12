@@ -7,7 +7,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page'),
+        title: Text('Amplify Auth Demo'),
         actions: [
           TextButton(
             onPressed: () => context.read<AppUser>().signOut(),

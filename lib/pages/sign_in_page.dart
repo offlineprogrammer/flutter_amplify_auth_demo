@@ -10,7 +10,7 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Time Tracker'),
+        title: Text('Amplify Auth Demo'),
         elevation: 10,
       ),
       body: _buildContent(context),
