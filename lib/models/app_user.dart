@@ -61,4 +61,39 @@ class AppUser extends ChangeNotifier {
       print(e.message);
     }
   }
+
+  Future<bool> registerWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      Map<String, String> userAttributes = {
+        'email': email,
+        'preferred_username': email,
+        // additional attributes as needed
+      };
+      SignUpResult res = await Amplify.Auth.signUp(
+          username: email,
+          password: password,
+          options: CognitoSignUpOptions(userAttributes: userAttributes));
+      return true;
+    } on AuthException catch (e) {
+      print(e.message);
+      return false;
+    }
+  }
+
+  signInWithEmailAndPassword(String email, String password) {}
+
+  confirmRegisterWithCode(String email, String code) async {
+    try {
+      SignUpResult res = await Amplify.Auth.confirmSignUp(
+          username: email, confirmationCode: code);
+      print(res.isSignUpComplete);
+      isSignedIn = res.isSignUpComplete;
+      notifyListeners();
+      return true;
+    } on AuthException catch (e) {
+      print(e.message);
+      return true;
+    }
+  }
 }

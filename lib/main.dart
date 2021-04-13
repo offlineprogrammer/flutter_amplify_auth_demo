@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_amplify_auth_demo/models/email_sign_in.dart';
 import 'package:flutter_amplify_auth_demo/pages/landing_page.dart';
 import 'package:provider/provider.dart';
 
