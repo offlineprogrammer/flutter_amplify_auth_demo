@@ -55,7 +55,13 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
   Future<void> _submit() async {
     try {
       await model.submit();
-      Navigator.of(context).pop();
+      print('Mode is ' + model.formType.toString());
+      // if (model.formType != EmailSignInFormType.confirm) {
+      //   Navigator.of(context).pop();
+      // }
+      if (model.submitted) {
+        Navigator.of(context).pop();
+      }
     } catch (e) {}
 
     print(_emailController.text);

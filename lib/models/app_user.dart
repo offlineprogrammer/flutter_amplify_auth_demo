@@ -77,7 +77,7 @@ class AppUser extends ChangeNotifier {
       return true;
     } on AuthException catch (e) {
       print(e.message);
-      return false;
+      throw e;
     }
   }
 
