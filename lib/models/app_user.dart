@@ -81,7 +81,18 @@ class AppUser extends ChangeNotifier {
     }
   }
 
-  signInWithEmailAndPassword(String email, String password) {}
+  signInWithEmailAndPassword(String email, String password) async {
+    try {
+      SignInResult res = await Amplify.Auth.signIn(
+        username: email.trim(),
+        password: password.trim(),
+      );
+
+      isSignedIn = res.isSignedIn;
+    } on AuthException catch (e) {
+      throw e;
+    }
+  }
 
   confirmRegisterWithCode(String email, String code) async {
     try {
@@ -93,7 +104,7 @@ class AppUser extends ChangeNotifier {
       return true;
     } on AuthException catch (e) {
       print(e.message);
-      return true;
+      throw e;
     }
   }
 }
