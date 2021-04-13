@@ -1,11 +1,19 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_amplify_auth_demo/models/app_user.dart';
+import 'package:flutter_amplify_auth_demo/pages/email_sign_in_page.dart';
 import 'package:flutter_amplify_auth_demo/widgets/sign_in_button.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_amplify_auth_demo/models/buttons_enum.dart';
 
 class SignInPage extends StatelessWidget {
+  void _signInWithEmail(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+          builder: (context) => EmailSignInPage(), fullscreenDialog: true),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,7 +96,7 @@ class SignInPage extends StatelessWidget {
           ),
           SocialSignInButton(
             button: Buttons.Email,
-            onPressed: () => context.read<AppUser>().signIn(AuthProvider.apple),
+            onPressed: () => _signInWithEmail(context),
             color: Colors.deepOrange,
             text: 'Sign in with email',
             textColor: Colors.white,
