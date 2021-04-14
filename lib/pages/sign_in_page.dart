@@ -73,16 +73,6 @@ class SignInPage extends StatelessWidget {
           SizedBox(
             height: 8.0,
           ),
-          SocialSignInButton(
-            button: Buttons.Apple,
-            onPressed: () => context.read<AppUser>().signIn(AuthProvider.apple),
-            color: Colors.black,
-            text: 'Sign in with Apple',
-            textColor: Colors.white,
-          ),
-          SizedBox(
-            height: 8.0,
-          ),
           Text(
             'Or',
             style: TextStyle(

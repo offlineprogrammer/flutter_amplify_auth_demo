@@ -25,7 +25,7 @@ class AppUser extends ChangeNotifier {
     } catch (e) {
       print('Erroorrr ' + e.toString());
     } finally {
-      // _fetchSession();
+      signOut();
     }
   }
 
@@ -46,8 +46,8 @@ class AppUser extends ChangeNotifier {
       var res = await Amplify.Auth.signInWithWebUI(provider: authProvider);
       isSignedIn = true;
       notifyListeners();
-    } on AmplifyException catch (e) {
-      print(e.message);
+    } catch (e) {
+      throw e;
     }
   }
 
@@ -89,7 +89,8 @@ class AppUser extends ChangeNotifier {
       );
 
       isSignedIn = res.isSignedIn;
-    } on AuthException catch (e) {
+    } catch (e) {
+      print('Error ' + e.toString());
       throw e;
     }
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_amplify_auth_demo/models/app_user.dart';
 import 'package:flutter_amplify_auth_demo/models/email_sign_in.dart';
+import 'package:flutter_amplify_auth_demo/widgets/show_error_dialog.dart';
 import 'package:provider/provider.dart';
 
 class EmailSignInForm extends StatefulWidget {
@@ -62,9 +63,14 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       if (model.submitted) {
         Navigator.of(context).pop();
       }
-    } catch (e) {}
-
-    print(_emailController.text);
+    } catch (e) {
+      showErrorDialog(
+        context,
+        title: 'Error',
+        content: e.message,
+        defaultActionText: 'Ok',
+      );
+    }
   }
 
   void _toggleFormType() {
