@@ -34,7 +34,14 @@ class SignInPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(
-            child: _buildHeader(),
+            child: Text(
+              'Sign In',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
             height: 50.0,
           ),
           SizedBox(
@@ -92,22 +99,6 @@ class SignInPage extends StatelessWidget {
             textColor: Colors.white,
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
-    // if (isLoading) {
-    //   return Center(
-    //     child: CircularProgressIndicator(),
-    //   );
-    // }
-    return Text(
-      'Sign In',
-      textAlign: TextAlign.center,
-      style: TextStyle(
-        fontSize: 32,
-        fontWeight: FontWeight.w600,
       ),
     );
   }

@@ -31,8 +31,6 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
 
-  EmailSignInFormType _formType = EmailSignInFormType.signIn;
-
   EmailSignIn get model => widget.model;
 
   void _emailEditingComplete() {
@@ -56,10 +54,6 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
   Future<void> _submit() async {
     try {
       await model.submit();
-      print('Mode is ' + model.formType.toString());
-      // if (model.formType != EmailSignInFormType.confirm) {
-      //   Navigator.of(context).pop();
-      // }
       if (model.submitted) {
         Navigator.of(context).pop();
       }
