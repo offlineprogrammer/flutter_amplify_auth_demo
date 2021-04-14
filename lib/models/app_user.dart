@@ -9,9 +9,7 @@ class AppUser extends ChangeNotifier {
   String username;
 
   AppUser() {
-    print('Amplify ' + Amplify.isConfigured.toString());
     if (!Amplify.isConfigured) configureAmplify();
-    // _fetchSession();
   }
 
   void configureAmplify() async {
@@ -19,31 +17,18 @@ class AppUser extends ChangeNotifier {
     Amplify.addPlugins([authPlugin]);
 
     try {
-      print('Amplify configureAmplify ' + Amplify.isConfigured.toString());
       await Amplify.configure(amplifyconfig);
-      print('Amplify configureAmplify ' + Amplify.isConfigured.toString());
     } catch (e) {
-      print('Erroorrr ' + e.toString());
+      print('Error ' + e.toString());
     } finally {
+      // For development let's make sure we are signed out
       signOut();
-    }
-  }
-
-  void _fetchSession() async {
-    try {
-      signOut();
-      var res = await Amplify.Auth.getCurrentUser();
-      print(res.username);
-      isSignedIn = true;
-      notifyListeners();
-    } catch (e) {
-      //  print(e.message);
     }
   }
 
   void signIn(AuthProvider authProvider) async {
     try {
-      var res = await Amplify.Auth.signInWithWebUI(provider: authProvider);
+      await Amplify.Auth.signInWithWebUI(provider: authProvider);
       isSignedIn = true;
       notifyListeners();
     } catch (e) {
@@ -54,7 +39,6 @@ class AppUser extends ChangeNotifier {
   void signOut() async {
     try {
       await Amplify.Auth.signOut();
-      print('signed out');
       isSignedIn = false;
       notifyListeners();
     } on AuthException catch (e) {
@@ -70,7 +54,7 @@ class AppUser extends ChangeNotifier {
         'preferred_username': email,
         // additional attributes as needed
       };
-      SignUpResult res = await Amplify.Auth.signUp(
+      await Amplify.Auth.signUp(
           username: email,
           password: password,
           options: CognitoSignUpOptions(userAttributes: userAttributes));
@@ -90,7 +74,6 @@ class AppUser extends ChangeNotifier {
 
       isSignedIn = res.isSignedIn;
     } catch (e) {
-      print('Error ' + e.toString());
       throw e;
     }
   }
@@ -99,12 +82,11 @@ class AppUser extends ChangeNotifier {
     try {
       SignUpResult res = await Amplify.Auth.confirmSignUp(
           username: email, confirmationCode: code);
-      print(res.isSignUpComplete);
+
       isSignedIn = res.isSignUpComplete;
       notifyListeners();
       return true;
     } on AuthException catch (e) {
-      print(e.message);
       throw e;
     }
   }
