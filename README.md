@@ -1,16 +1,26 @@
-# flutter_amplify_auth_demo
+# Reference Authentication Flow with Flutter & AWS Amplify
 
-A new Flutter project.
 
-## Getting Started
+YouTube video demo here: 
 
-This project is a starting point for a Flutter application.
+[![Authentication Flow with Flutter & AWS Amplify](media/youtube.png)](https://youtu.be/qe4Iw3Zfsqo)
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+This project shows how to implement a full authentication flow in Flutter, using various AWS Amplify sign-in methods.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Project goals
+
+This project shows how to:
+
+- use the various AWS Amplify sign-in methods
+- build a robust authentication flow
+- use appropriate state management techniques to separate UI, logic and authentication code
+- handle errors and present user-friendly error messages
+- write production-ready code following best practices
+
+
+Blog post: https://dev.to/offlineprogrammer/authentication-flow-with-flutter-aws-amplify-41fa
+
+
+## [License: MIT](LICENSE.md)
