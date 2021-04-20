@@ -72,6 +72,7 @@ class AppUser extends ChangeNotifier {
       );
 
       isSignedIn = res.isSignedIn;
+      notifyListeners();
     } catch (e) {
       throw e;
     }
